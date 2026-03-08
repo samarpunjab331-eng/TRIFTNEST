@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThriftNest • Shop</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="page-transition"></div>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="brand" href="index.html">
+        <span class="brand__logo" aria-hidden="true">🪶</span>
+        <span class="brand__name">ThriftNest</span>
+      </a>
+      <form id="searchForm" class="nav-search" autocomplete="off">
+        <input id="searchInput" type="search" placeholder="Search thrift finds" aria-label="Search thrift finds" />
+        <button type="submit" class="btn btn--primary">Search</button>
+      </form>
+
+      <div class="nav-actions">
+        <div class="dropdown" id="categoryDropdown">
+          <button class="btn btn--ghost dropdown__toggle" type="button">
+            Categories <span class="chevron">▾</span>
+          </button>
+          <div class="dropdown__menu">
+            <button data-category="Men's Thrift" class="dropdown__item">Men's Thrift</button>
+            <button data-category="Women's Thrift" class="dropdown__item">Women's Thrift</button>
+            <button data-category="Jackets" class="dropdown__item">Jackets</button>
+            <button data-category="Vintage" class="dropdown__item">Vintage</button>
+            <button data-category="Streetwear" class="dropdown__item">Streetwear</button>
+            <button data-category="Accessories" class="dropdown__item">Accessories</button>
+          </div>
+        </div>
+
+        <a class="btn btn--outline" href="sell.html">Sell Your Clothes</a>
+        <a class="btn btn--icon" href="cart.html" aria-label="Cart">
+          <span class="icon">🛒</span>
+          <span class="badge" id="cartCount">0</span>
+        </a>
+        <a class="btn btn--outline" href="login.html" id="authButton">Login</a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Open navigation" id="mobileMenuToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav">
+      <form class="mobile-search" id="mobileSearchForm" autocomplete="off">
+        <input id="mobileSearchInput" type="search" placeholder="Search thrift finds" aria-label="Search thrift finds" />
+        <button type="submit" class="btn btn--primary">Search</button>
+      </form>
+      <div class="mobile-nav-links">
+        <a href="sell.html" class="btn btn--ghost">Sell Your Clothes</a>
+        <a href="cart.html" class="btn btn--ghost">Cart</a>
+        <a href="login.html" class="btn btn--ghost" id="authButtonMobile">Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="shop-hero">
+      <div class="container">
+        <div class="shop-hero__content">
+          <h1>Shop thrifted style</h1>
+          <p>Filter by category, size, condition, and price to find your next favorite piece.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container shop-grid">
+        <aside class="sidebar" aria-label="Filtering options">
+          <h2>Filters</h2>
+          <form id="filterForm">
+            <div class="filter-group">
+              <label for="filterCategory">Category</label>
+              <select id="filterCategory" name="category">
+                <option value="">All</option>
+                <option value="Men's Thrift">Men's Thrift</option>
+                <option value="Women's Thrift">Women's Thrift</option>
+                <option value="Jackets">Jackets</option>
+                <option value="Vintage">Vintage</option>
+                <option value="Streetwear">Streetwear</option>
+                <option value="Accessories">Accessories</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Size</label>
+              <div class="filter-grid">
+                <label class="filter-checkbox"><input type="checkbox" value="XS" name="size" /> XS</label>
+                <label class="filter-checkbox"><input type="checkbox" value="S" name="size" /> S</label>
+                <label class="filter-checkbox"><input type="checkbox" value="M" name="size" /> M</label>
+                <label class="filter-checkbox"><input type="checkbox" value="L" name="size" /> L</label>
+                <label class="filter-checkbox"><input type="checkbox" value="XL" name="size" /> XL</label>
+                <label class="filter-checkbox"><input type="checkbox" value="One Size" name="size" /> One Size</label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label for="priceRange">Price (max)</label>
+              <div class="price-slider" aria-label="Price range">
+                <input id="priceRange" type="range" min="0" max="200" value="200" />
+                <output id="priceValue">$200</output>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label>Condition</label>
+              <label class="filter-checkbox"><input type="checkbox" value="Like New" name="condition" /> Like New</label>
+              <label class="filter-checkbox"><input type="checkbox" value="Good" name="condition" /> Good</label>
+              <label class="filter-checkbox"><input type="checkbox" value="Vintage" name="condition" /> Vintage</label>
+            </div>
+
+            <div class="filter-actions">
+              <button type="reset" class="btn btn--ghost">Clear</button>
+              <button type="submit" class="btn btn--primary">Apply</button>
+            </div>
+          </form>
+        </aside>
+
+        <section class="product-section">
+          <div class="product-toolbar">
+            <div>
+              <p id="resultsCount">Showing 0 products</p>
+            </div>
+            <div class="sort">
+              <label for="sortSelect">Sort by</label>
+              <select id="sortSelect">
+                <option value="popular">Most popular</option>
+                <option value="priceLow">Price: low to high</option>
+                <option value="priceHigh">Price: high to low</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="product-grid" id="productGrid"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>ThriftNest</h3>
+        <p>Modern thrift marketplace with curated secondhand fashion.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="products.html">Shop</a></li>
+          <li><a href="sell.html">Sell</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="login.html">Account</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay in the loop</h4>
+        <p>Sign up for updates, new drops, and exclusive thrift tips.</p>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" placeholder="Your email" aria-label="Your email" required />
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="currentYear"></span> ThriftNest. Crafted for conscious style.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

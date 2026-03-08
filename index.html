@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThriftNest • Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="page-transition"></div>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="brand" href="index.html">
+        <span class="brand__logo" aria-hidden="true">🪶</span>
+        <span class="brand__name">ThriftNest</span>
+      </a>
+      <form id="searchForm" class="nav-search" autocomplete="off">
+        <input id="searchInput" type="search" placeholder="Search thrift finds" aria-label="Search thrift finds" />
+        <button type="submit" class="btn btn--primary">Search</button>
+      </form>
+
+      <div class="nav-actions">
+        <div class="dropdown" id="categoryDropdown">
+          <button class="btn btn--ghost dropdown__toggle" type="button">
+            Categories <span class="chevron">▾</span>
+          </button>
+          <div class="dropdown__menu">
+            <button data-category="Men's Thrift" class="dropdown__item">Men's Thrift</button>
+            <button data-category="Women's Thrift" class="dropdown__item">Women's Thrift</button>
+            <button data-category="Jackets" class="dropdown__item">Jackets</button>
+            <button data-category="Vintage" class="dropdown__item">Vintage</button>
+            <button data-category="Streetwear" class="dropdown__item">Streetwear</button>
+            <button data-category="Accessories" class="dropdown__item">Accessories</button>
+          </div>
+        </div>
+
+        <a class="btn btn--outline" href="sell.html">Sell Your Clothes</a>
+        <a class="btn btn--icon" href="cart.html" aria-label="Cart">
+          <span class="icon">🛒</span>
+          <span class="badge" id="cartCount">0</span>
+        </a>
+        <a class="btn btn--outline" href="login.html" id="authButton">Login</a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Open navigation" id="mobileMenuToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav">
+      <form class="mobile-search" id="mobileSearchForm" autocomplete="off">
+        <input id="mobileSearchInput" type="search" placeholder="Search thrift finds" aria-label="Search thrift finds" />
+        <button type="submit" class="btn btn--primary">Search</button>
+      </form>
+      <div class="mobile-nav-links">
+        <a href="sell.html" class="btn btn--ghost">Sell Your Clothes</a>
+        <a href="cart.html" class="btn btn--ghost">Cart</a>
+        <a href="login.html" class="btn btn--ghost" id="authButtonMobile">Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <div class="hero__overlay"></div>
+      <div class="container hero__content">
+        <h1>Thrifted fashion, modern vibes.</h1>
+        <p>Discover curated secondhand finds, from vintage jackets to streetwear staples.</p>
+        <div class="hero__actions">
+          <a href="products.html" class="btn btn--primary btn--large">Shop Thrift</a>
+          <a href="sell.html" class="btn btn--ghost btn--large">List Your Style</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="categoriesTitle">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="categoriesTitle">Browse Categories</h2>
+          <p class="section-subtitle">Explore thrifted pieces in all your favorite styles.</p>
+        </div>
+
+        <div class="categories-grid">
+          <a href="products.html?category=Men's+Thrift" class="category-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1531735416036-6eecbf33f741?auto=format&fit=crop&w=800&q=70" alt="Men's thrift" />
+            <span>Men's Thrift</span>
+          </a>
+          <a href="products.html?category=Women's+Thrift" class="category-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=70" alt="Women's thrift" />
+            <span>Women's Thrift</span>
+          </a>
+          <a href="products.html?category=Jackets" class="category-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=70" alt="Jackets" />
+            <span>Jackets</span>
+          </a>
+          <a href="products.html?category=Vintage" class="category-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=70" alt="Vintage" />
+            <span>Vintage</span>
+          </a>
+          <a href="products.html?category=Streetwear" class="category-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1619747304194-e40a26af4c4f?auto=format&fit=crop&w=800&q=70" alt="Streetwear" />
+            <span>Streetwear</span>
+          </a>
+          <a href="products.html?category=Accessories" class="category-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1542258939-6aee4b7afec5?auto=format&fit=crop&w=800&q=70" alt="Accessories" />
+            <span>Accessories</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="trendingTitle">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="trendingTitle">Trending Thrift</h2>
+          <p class="section-subtitle">These pieces are getting snapped up fast.</p>
+        </div>
+
+        <div class="product-grid" id="trendingProducts"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="recommendedTitle">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="recommendedTitle">Recommended For You</h2>
+          <p class="section-subtitle">Handpicked pieces based on recent favorites.</p>
+        </div>
+
+        <div class="product-grid" id="recommendedProducts"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>ThriftNest</h3>
+        <p>Modern thrift marketplace with curated secondhand fashion.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="products.html">Shop</a></li>
+          <li><a href="sell.html">Sell</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="login.html">Account</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay in the loop</h4>
+        <p>Sign up for updates, new drops, and exclusive thrift tips.</p>
+        <form id="newsletterForm" class="newsletter-form">
+          <input type="email" placeholder="Your email" aria-label="Your email" required />
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="currentYear"></span> ThriftNest. Crafted for conscious style.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
